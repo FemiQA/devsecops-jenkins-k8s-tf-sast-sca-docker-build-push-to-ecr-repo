@@ -18,25 +18,4 @@ pipeline {
 			}
     }
 
-	stage('Build') { 
-            steps { 
-               withDockerRegistry([credentialsId: "dockerlogin", url: ""]) {
-                 script{
-                 app =  docker.build("qabug")
-                 }
-               }
-            }
-    }
-
-	stage('Push') {
-            steps {
-                script{
-                    docker.withRegistry('https://816069155550.dkr.ecr.us-west-2.amazonaws.com', 'ecr:us-west-2:aws-credentials') {
-                    app.push("latest")
-                    }
-                }
-            }
-    	}
-	    
-  }
-}
+	
